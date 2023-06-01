@@ -1,79 +1,56 @@
 {% extends "users/base.html" %}
+{% load static %}
 {% block title %} Login Page {% endblock title%}
 {% block content %}
-    <div class="form-content my-3 p-3">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
-                        <div class="card-header justify-content-center">
-                          <h3 class="font-weight-light my-1 text-center">Sign In</h3>
+
+<div class="sign-bg">
+    <div  class="sign mx-auto border border-secondary" style="height: 100vh;">
+
+        <a href="{% url 'users-home' %}" id="cancel" name="cancel" class="btn btn-default float-end">&#x2716;</a>
+    
+        <main class="form-signin m-auto text-center pt-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div id="form_errors">
+                            {% for key, value in form.errors.items %}
+                                <small>{{ value }}</small>
+                            {% endfor %}
                         </div>
-                        {% if form.errors %}
-                            <div class="alert alert-danger alert-dismissible" role="alert">
-                                <div id="form_errors">
-                                    {% for key, value in form.errors.items %}
-                                        <strong>{{ value }}</strong>
-                                    {% endfor %}
-                                </div>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        {% endif %}
-                        <div class="card-body">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <div class="form-row">
-                                    <div class="col-md-10 offset-md-1">
-                                        <div class="form-group">
-                                            <a href="{% url 'social:begin' 'github' %}"
-                                                   class="btn btn-link btn-lg active btn-block">Sign in with GitHub</a>
-                                            <a href="{% url 'social:begin' 'google-oauth2' %}"
-                                                   class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
-                                            <hr>
-                                            <p class="text-center"><strong>OR</strong></p>
-                                            <hr>
-                                            <label class="small mb-1">Username</label>
-                                            {{ form.username }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-10 offset-md-1">
-                                        <div class="form-group">
-                                          <label class="small mb-1">Password</label>
-                                          {{ form.password }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-10 offset-md-1">
-                                        <div class="form-group">
-                                            <!-- Add a Remember me functionality -->
-                                            {{ form.remember_me }}
-                                            <label> Remember me</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-10 offset-md-1">
-                                        <div class="form-group mt-0 mb-1">
-                                          <button name="login" class="col-md-12 btn btn-dark" id="login">Sign in</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-footer text-center">
-                            <div class="small">
-                                <a href="{% url 'users-register' %}">Don't have an account yet? Go to signup</a><br>
-                                <a href="{% url 'password_reset' %}"><i>Forgot Password?</i></a>
-                            </div>
-                        </div>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                {% endif %}
+    
+                <h3>Welcome Back</h3>
+    
+                <p class="my-3" style="font-size: 12px;">Enter the email address and password associated with your account to Login</p>
+    
+                <div class="form__group field">
+                    {{ form.username }}
+                    <label class="form__label" for="Username">Username</label>
                 </div>
-            </div>
-        </div>
-     </div>
+    
+                <div class="form__group field">
+                    {{ form.password }}
+                    <label class="form__label" for="password">Enter Password</label>
+                </div>
+    
+                <button type="submit" class="w-100 btn btn-primary mt-4">Continue</button>
+    
+                <div class="mt-5 mx-auto"style="width: 70%; text-align: center; border-bottom: 1px solid #a5a5a5; line-height: 0.1em; margin: 10px 0 20px; justify-content;">
+                    <span style=" background-color: #fff; padding: 0 10px;">or</span>
+                </div>
+    
+                <a class="w-100 btn btn-outline-danger text-dark my-4" href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'Images/google.svg' %}" width="18px"> Continue with Google</a>
+        
+                <a class="w-100 btn btn-outline-primary text-dark" href="#"><img src="{% static 'Images/fb.svg' %}" width="18px"> Continue with Facebook</a>
+        
+                <p class="my-4">No account? <a href="{% url 'users-register' %}" class="text-decoration-none"><b>Sign Up</b></a></p>
+            </form>
+        </main>
+    </div>
+</div>
 {% endblock content %}

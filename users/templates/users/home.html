@@ -1,20 +1,429 @@
 {% extends "users/base.html" %}
+{% load static %}
 {% block title %} Home Page {% endblock title%}
 {% block content %}
-    <div class="jumbotron">
-        <h1 class="display-4">Welcome, {{user.first_name.title|default:'Guest'}}</h1>
-        <p class="lead">
-            This is <b>user registration and login system</b> build with django which is
-            a Python-based free and open-source web framework that follows the model–template–views architectural pattern.
-        </p>
-        <hr class="my-4">
-        <p class="lead">
+
+<!-- Navigetion Menu -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container nav-bg nav-font">
+        <a class="navbar-brand col-lg-3 me-0" href="{% url 'users-home' %}"><img src="{% static 'Images/logo.png' %}" alt="POSTIT"></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarsExample11">
             {% if user.is_authenticated %}
-                <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+            <ul class="navbar-nav col-lg-6 justify-content-lg-end">
+                <li class="nav-item"><a class="nav-link" href="#">Stories</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+
+            <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                <a class="btn btn-primary nav-btn" href="{% url 'logout' %}" role="button">Logout</a>
+            </div>
             {% else %}
-                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+            <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarsExample11">
+
+                <ul class="navbar-nav col-lg-6 justify-content-lg-end">
+                    <li class="nav-item"><a class="nav-link" href="#">Stories</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Sign In</a></li>
+                </ul>
+
+                <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                    <a class="btn btn-primary nav-btn" href="{% url 'users-register' %}" role="button">Get Started</a>
+                </div>
+            </div>
             {% endif %}
-        </p>
+        </div>
     </div>
+</nav>
+<!-- End of Navigetion Menu -->
+
+
+
+<!-- Hero -->
+<section class="container-fluid bg-img">
+    <div class="container col-xxl-8 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+            <div class="col-10 col-sm-8 col-lg-6"></div>
+
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3">Stay Curious.</h1>
+
+                <p class="lead">Lorem ipsum dolor sit ameetur adipiscing elit. Coctetur egestas massa velit aliquam. Molestim bibendum hnt ipsum orci, platea aliquam id ut.</p>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Email Address" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <a class="btn btn-primary nav-btn" href="#" role="button">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Hero -->
+
+
+
+<!-- Section 2 -->
+<div class="container my-5 pt-2 border border-2">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{% static 'Images/Rectangle5.png' %}" alt="" width="100%">
+                    </div>
+
+                    <div class="col-8">
+                        <label class="bg-warning text-white d-inline-flex p-1 rounded-2">Lifestyle</label>
+                        <p>The 20 Biggest Fashion Companies In Nigeria 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 ">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{% static 'Images/Rectangle5-1.png' %}" alt="" width="100%">
+                    </div>
+
+                    <div class="col-8">
+                        <label class="bg-success text-white d-inline-flex p-1 rounded-2">Nature</label>
+                        <p>The 20 Biggest Agro Companies In Nigeria 2022</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 ">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{% static 'Images/Rectangle5-2.png' %}" alt="" width="100%">
+                    </div>
+
+                    <div class="col-8">
+                        <label class="bg-primary text-white d-inline-flex p-1 rounded-2">Technologies</label>
+                        <p>The 20 Biggest Fintech Companies In Nigeria 2022</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- End of Section 2 -->
+
+
+
+<!-- Trending Stories -->
+<div class="container ">
+    <h2 class="mt-4">Trending Stories</h2>
+
+    <div class="row g-3">
+
+        <div class="col-md-5 themed-grid-col">
+            <div class="card card-cover overflow-hidden text-bg-dark rounded-2" style="background-image: url('{% static 'images/Rectangle7.png' %}'); height: 608px;">
+                    <div class="flex-column p-3 text-white">
+                        
+                        <h5 class="bg-success text-white d-inline-flex p-2 rounded-1">Nature</h5>
+
+                        <div style="padding-top: 370px;">
+                            <ul class="d-flex list-unstyled">
+                                <li class="me-auto">
+                                    <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32"
+                                        class="rounded-circle border border-success">
+                                    <small>Maria Davies</small>
+                                </li>
+                            </ul>
+
+                            <h4>The 20 Biggest Agro Companies In Nigeria 2022</h4>
+                            <p>May 21, 2022</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="col-md-7 themed-grid-col">
+            <div class="pb-3">
+                <div class="card card-cover overflow-hidden text-bg-dark rounded-2 img-fluid"
+                        style="background-image: url('{% static 'images/Rectangle8.png' %}'); width: 702px; height: 302px;">
+
+                        <div class=" flex-column p-3 pb-3 text-white">
+
+                            <h5 class="bg-warning text-white d-inline-flex p-2 rounded-1 mb-5">Lifestyle</h5>
+
+                            <ul class="d-flex list-unstyled mt-5">
+                                <li class="me-auto">
+                                    <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-warning">
+                                    <small>Maria Davies</small>
+                                </li>
+                            </ul>
+
+                            <h4>The 20 Biggest Fashion In Nigeria 2022</h4>
+
+                            <p>May 21, 2022</p>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6 themed-grid-col">
+                    <div class="card card-cover overflow-hidden text-bg-dark rounded-2 img-fluid"
+                            style="background-image: url('{% static 'images/Rectangle9.png' %}');width: 337px; height: 285px;">
+                            <div class=" flex-column p-3 pb-3 text-white text-shadow-1">
+                                <h5 class="bg-primary text-white d-inline-flex p-2 rounded-1 mb-4">Technology</h5>
+
+                                <ul class="d-flex list-unstyled mt-5">
+                                    <li class="me-auto">
+                                        <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-primary">
+                                        <small>Maria Davies</small>
+                                    </li>
+                                </ul>
+
+                                <h4>The 20 Biggest Fintech In Nigeria 2022</h4>
+                                <p>May 21, 2022</p>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6 themed-grid-col"><div class="card card-cover overflow-hidden text-bg-dark rounded-2 img-fluid"
+                    style="background-image: url('{% static 'images/Rectangle10.png' %}'); width: 337px; height: 285px;">
+                    <div class=" flex-column p-3 text-white text-shadow-1">
+                        <h5 class="bg-danger text-white d-inline-flex p-2 rounded-1 mb-4">Sport</h5>
+
+                        <ul class="d-flex list-unstyled mt-5">
+                            <li class="me-auto">
+                                <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-danger">
+                                <small>Maria Davies</small>
+                            </li>
+                        </ul>
+
+                        <h4>The 20 Biggest Sport In Nigeria 2022</h4>
+                        <p>May 21, 2022</p>
+                    </div>
+                </div></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- End of Trending Stories -->
+
+
+
+<!-- Porpular Stories -->
+<div class="container py-5">
+    <h2 class="mt-4">Porpular Stories</h2>
+
+    <div class="row mb-3">
+
+        <div class="col-md-6 themed-grid-col">
+            <img src="{% static 'images/Rectangle7a.png' %}" alt="" class="img-fluid">
+
+            <label class="bg-success text-white d-inline-flex p-2 rounded-1 mb-3 mt-5"><b>Nature</b></label>
+
+            <h2>The 20 Biggest Agro Companies In Nigeria 2022</h2>
+
+            <ul class="d-flex list-unstyled mt-5">
+                <li class="me-auto">
+                    <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-danger">
+                    <small>By <b>Maria Davies</b>- May 21, 2022</small>
+                </li>
+            </ul>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisgsque vel, metus auam adipiscing massa. Nec ornare leo consequat, sociis. Tellus nisl, porttitor eniilisi vel. Velit ornare eget sit condimentum ultricies diam. Ultrices leudin commodo et. Commodo eu, vedefrstibulum tincidunt ametum vel, arcu. <a href="#" class="text-danger text-decoration-none">Read More...</a></p>
+        </div>
+
+        <div class="col-md-6 themed-grid-col">
+            <div class="pb-2">
+                <div class="row gx-5">
+                    <div class="col-md-8">
+                        <div>
+                            <label class="bg-primary text-white d-inline-flex p-2 rounded-1 mb-3"><b>Technology</b></label>
+            
+                            <h4 class="">The 20 Biggest Fintech Companies In Nigeria 2022</h4>
+            
+                            <ul class="d-flex list-unstyled mt-3">
+                                <li class="me-auto">
+                                    <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-danger">
+                                    <small>By <b>Maria Davies</b>- May 21, 2022</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="col-4">
+                        <div class="p-3">
+                            <img src="{% static 'images/Rectangle9b.png' %}">
+                        </div>
+                    </div>
+
+                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisgsque vel, metus auam adipisjjcing massa. Nec ornare leo consequat, sociis...</p>
+                </div>
+            </div>
+
+            <div class="pb-2">
+                <div class="row gx-5">
+                    <div class="col-md-8">
+                        <div>
+                            <label class="bg-warning text-white d-inline-flex p-2 rounded-1 mb-3"><b>Lifestyle</b></label>
+            
+                            <h4 class="">The 20 Biggest Fashion Companies In Nigeria 2022</h4>
+            
+                            <ul class="d-flex list-unstyled mt-3">
+                                <li class="me-auto">
+                                    <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-danger">
+                                    <small>By <b>Maria Davies</b>- May 21, 2022</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="col-4">
+                        <div class="p-3">
+                            <img src="{% static 'images/Rectangle9a.png' %}">
+                        </div>
+                    </div>
+
+                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisgsque vel, metus auam adipisjjcing massa. Nec ornare leo consequat, sociis...</p>
+                </div>
+            </div>
+
+            <div class="pb-2">
+                <div class="row gx-5">
+                    <div class="col-md-8">
+                        <div>
+                            <label class="bg-primary text-white d-inline-flex p-2 rounded-1 mb-3"><b>Technology</b></label>
+            
+                            <h4 class="">The 20 Biggest Fintech Companies In Nigeria 2022</h4>
+            
+                            <ul class="d-flex list-unstyled mt-3">
+                                <li class="me-auto">
+                                    <img src="{% static 'images/Ellipse1.png' %}" width="32" height="32" class="rounded-circle border border-danger">
+                                    <small>By <b>Maria Davies</b>- May 21, 2022</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="col-4">
+                        <div class="p-3">
+                            <img src="{% static 'images/Rectangle9b.png' %}">
+                        </div>
+                    </div>
+
+                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisgsque vel, metus auam adipisjjcing massa. Nec ornare leo consequat, sociis...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- End of Porpular Stories -->
+
+
+
+<!-- Discovries -->
+<div class="container text-center disc p-5 my-5">
+    <h2>Try Post<span class="text-primary">it</span>.</h2>
+
+    <p>Do you want to write or discover stories from writers on any topic?</p>
+
+    <div class="input-group mt-4 w-50 mx-auto">
+        <input type="text" class="form-control" placeholder="Email Address">
+        <span class="input-group-text bg-primary text-white" type="button">Get Started</span>
+    </div>
+
+</div>
+<!-- End of Discovries -->
+
+
+
+<!-- Footer -->
+<div class="container-fluid bg-dark text-white px-3">
+    <footer class="pt-5">
+        <div class="row">
+            <div class="col-6 col-md-4 mb-3">
+                <h5>About Postit</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt id sem vel quis in turpis
+                    sit eget pellentesque. Nunc etiicies in rhoncus, rhoncus in arcu. Tincidunt neque fusce
+                    vitaenisi aliquet. que maeae tortoere necsem commodo ac.</p>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Quick Menu</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Stories</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Trending Stories</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Porpular Stories</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+                <br>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Sign up</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Log in</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <form>
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of what's new and exciting from us.</p>
+
+                    <div class="footer-input">
+                        <input required="" placeholder="Email Address" type="email">
+                        <button class="subscribe-btn" type="button">
+                          Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row justify-content-end py-4 my-4 border-top">
+            <p>Terms and Policies</p>
+            <ul class="list-unstyled d-flex ">
+
+
+                <li class="ms-3">
+                    <a href="#"><img src="{% static 'images/twitter.svg' %}" alt=""></a>
+                </li>
+
+                <li class="ms-3">
+                    <a href="#"><img src="{% static 'images/facebook.svg' %}" alt=""></a>
+                </li>
+
+                <li class="ms-3">
+                    <a href="#"><img src="{% static 'images/insta.svg' %}" alt=""></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</div>
+<!-- End of Footer -->
+
+
+    
 
 {% endblock content %}
